@@ -11,11 +11,9 @@ Community Support: A unique feature to connect with marginalized groups, includi
 Personalized Legal Assistance: A chatbot-driven interface offering initial legal counseling and direction.
 
 Technology Stack:
-Backend: Django, MySQL
+Backend: Flask, MySQL
 
 Frontend: React Native (for mobile app), HTML/CSS/JS (for web portal)
-
-Cloud: AWS (for hosting and storage)
 
 Database: MySQL (for storing legal data and user info)
 
