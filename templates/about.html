@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - LawXpert</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            color: white;
+            background: url("{{ url_for('static', filename='images/blur.png') }}") no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .navbar {
+            background-color: rgba(58, 35, 7, 0.9);
+        }
+
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+
+        .about-section {
+            padding: 80px 10%;
+            text-align: left;
+        }
+
+        .about-title {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #3a2307;
+            margin-bottom: 20px;
+        }
+
+        .about-content {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .team-section {
+            padding: 50px 10%;
+            text-align: center;
+        }
+
+        .team-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #3a2307;
+            margin-bottom: 30px;
+        }
+
+        .team-members {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid gold;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand ms-3" href="/">LawXpert</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto me-3">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About Us</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="about-section">
+        <h1 class="about-title">ABOUT US</h1>
+        <p class="about-content">
+            LawXpert was created with a vision to empower every Indian citizen with the knowledge of their legal rights. We realized that many people in India struggle to understand the laws that protect them, often leading to injustice or exploitation. Finding the right lawyer is also a challenge, especially for those who are unfamiliar with the legal system. LawXpert makes legal assistance accessible by connecting users with experienced lawyers in just a few clicks and providing step-by-step guidance on legal procedures. Beyond legal aid, our platform also fosters a strong community support system, helping individuals connect with groups that advocate for their rights, whether it’s women’s rights, LGBTQ+ support, or consumer protection. With legal knowledge, expert help, and a supportive community at your fingertips, LawXpert ensures that no one in India is left unaware or alone when seeking justice.
+We hope you use our app and fulfill your legal requirements effortlessly, ensuring that justice is always within your reach.
+         </p>
+    </div>
+
+    <div class="team-section">
+        <div class="team-section">
+            <h2 class="team-title">THE TEAM</h2>
+            <h6>JEEVAN KARLEKAR - VU2F2324061&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BHOOMI NAIK - VU2F2324062&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SUHANA SHAIKH - VU2F2324064</h6>
+        </div>
+    </div>
+</body>
+</html>

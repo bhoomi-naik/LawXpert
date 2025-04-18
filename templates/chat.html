@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chat - Legal Guidance App</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('/static/images/blur.png') no-repeat center center fixed;
+      background-size: cover;
+      background-color: black;
+      color: white;
+      text-align: center;
+      margin-top: 100px;
+    }
+    .navbar {
+      background-color: #3a2307;
+      height: 60px;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+  }
+  .navbar-brand, .nav-link {
+      color: white !important;
+  }
+    .container {
+      background-color:  rgba(255, 255, 255, 0.2);
+      padding: 30px;
+      border-radius: 10px;
+      width: 600px;
+      margin: auto;
+    }
+    .chat-box {
+      background-color: #95937c;
+      border-radius: 20px;
+      padding: 10px;
+      height: 300px;
+      width: 95%; /* Adjust this percentage as needed */
+      max-width: 800px; /* Optional: Set a maximum width */
+      overflow-y: auto;
+      margin-botom: 10px;
+    }
+    
+    .user-message {
+      background-color: #95937c;
+      color: white;
+      text-align: right;
+      margin: 5px 0;
+      padding: 8px;
+      border-radius: 10px;
+    }
+    .bot-message {
+      background-color:#b88f5d;
+      color: black;
+      text-align: left;
+      margin: 5px 0;
+      padding: 8px;
+      border-radius: 10px;
+    }
+    button {
+      background-color: #80581d;
+      color: black;
+      border: none;
+      padding: 10px;
+      margin: 5px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color:#3a2307;
+    }
+    input {
+      padding: 10px;
+      width: 70%;
+      border-radius: 8px;
+      border: none;
+    }
+    .chat-box button {
+      background-color: #80581d;
+      color: black;
+      border: none;
+      padding: 8px 12px;
+      margin-top: 5px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .chat-box button:hover {
+      background-color:#80581d;
+    }
+    
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand ms-3" href="#">LawXpert</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto me-3">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/about">About Us</a>  
+          </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('chat') }}">Chat</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('community') }}">Community</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+  <h1>Welcome to LawXpert Chat</h1>
+  <div class="container">
+    <div class="chat-box" id="chat-box">
+      <div class="bot-message">Hello! Welcome to the Legal Guidance Chat. How can I assist you today?</div>
+      <button onclick="selectOption('Legal Advice')">Legal Advice</button>
+      <button onclick="selectOption('Case Status')">Check Case Status</button>
+      <button onclick="selectOption('Lawyer Connect')">Connect with a Lawyer</button>
+    </div>
+    <input type="text" id="message-input" placeholder="Type your message..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function selectOption(option) {
+      const chatBox = document.getElementById('chat-box');
+      const userMessage = document.createElement('div');
+      userMessage.classList.add('user-message');
+      userMessage.innerText = `You selected: ${option}`;
+      chatBox.appendChild(userMessage);
+
+      if (option === 'Legal Advice') {
+        addBotMessage('Please describe your legal issue briefly.');
+      } else if (option === 'Case Status') {
+        addBotMessage('Please enter your case ID to proceed.');
+      } else if (option === 'Lawyer Connect') {
+        displayLawyerOptions();
+      }
+    }
+
+    function displayLawyerOptions() {
+      const chatBox = document.getElementById('chat-box');
+      addBotMessage('Please select the type of lawyer you wish to connect with, or click "Help Me Choose" for guidance:');
+
+      const lawyerTypes = ['Civil Lawyer', 'Criminal Lawyer', 'Family Lawyer', 'Corporate Lawyer', 'Immigration Lawyer'];
+
+      lawyerTypes.forEach(type => {
+        const button = document.createElement('button');
+        button.innerText = type;
+        button.onclick = function() { connectToLawyer(type); };
+        chatBox.appendChild(button);
+      });
+
+      const helpButton = document.createElement('button');
+      helpButton.innerText = 'Help Me Choose';
+      helpButton.onclick = showLawyerDescriptions;
+      chatBox.appendChild(helpButton);
+    }
+
+    function showLawyerDescriptions() {
+      const descriptions = {
+        'Civil Lawyer': 'Handles non-criminal matters such as property disputes and contract issues.',
+        'Criminal Lawyer': 'Represents individuals accused of crimes.',
+        'Family Lawyer': 'Deals with matters like divorce and child custody.',
+        'Corporate Lawyer': 'Provides legal support to businesses.',
+        'Immigration Lawyer': 'Assists with visas and citizenship applications.'
+      };
+
+      for (const [lawyer, desc] of Object.entries(descriptions)) {
+        addBotMessage(`🟢 ${lawyer}: ${desc}`);
+      }
+    }
+
+    function connectToLawyer(lawyerType) {
+      addBotMessage(`You have chosen to connect with a ${lawyerType}. Please wait while we connect you.`);
+    }
+
+    function addBotMessage(text) {
+      const chatBox = document.getElementById('chat-box');
+      const botMessage = document.createElement('div');
+      botMessage.classList.add('bot-message');
+      botMessage.innerText = text;
+      chatBox.appendChild(botMessage);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('message-input');
+      const message = input.value.trim();
+      if (!message) return;
+    
+      displayMessage(message, 'user');
+      input.value = '';
+    
+      fetch('/send_message', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `message=${encodeURIComponent(message)}`
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.ai_response) {
+          displayMessage(`LawXpert: ${data.ai_response}`, 'bot');
+        } else {
+          displayMessage('Error: Unable to fetch response.', 'bot');
+        }
+      })
+      .catch(error => {
+        displayMessage(`Error: ${error}`, 'bot');
+      });
+    }
+
+    function displayMessage(text, type) {
+      const chatBox = document.getElementById('chat-box');
+      const messageElement = document.createElement('div');
+      messageElement.classList.add(type === 'user' ? 'user-message' : 'bot-message');
+      messageElement.innerText = text;
+      chatBox.appendChild(messageElement);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  </script>
+  <div class="disclaimer">
+    Disclaimer: This app is created solely for informational purposes and provides general legal information. Please consult a qualified lawyer for specific legal advice before taking any action.
+  </div>
+</body>
+</html>
+

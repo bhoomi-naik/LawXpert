@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connect with a Lawyer</title>
+  <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+<body>
+  <h1>Connect with a Lawyer</h1>
+  <p>Please select the type of lawyer you wish to connect with:</p>
+  
+  <form action="/connect_lawyer" method="post">
+    <label for="lawyer_type">Select Lawyer Type:</label>
+    <select name="lawyer_type" id="lawyer_type" required>
+      <option value="Civil">Civil Lawyer</option>
+      <option value="Criminal">Criminal Lawyer</option>
+      <option value="Family">Family Lawyer</option>
+      <option value="Corporate">Corporate Lawyer</option>
+      <option value="Immigration">Immigration Lawyer</option>
+    </select>
+    <button type="submit">Connect</button>
+  </form>
+
+  <a href="/dashboard">Back to Dashboard</a>
+</body>
+</html>
