@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "LawXpert2.0"
+version = "0.1.0"
+description = "A legal guidance web app"
+authors = ["bhoomi-naik <bnaik3112@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+# Add your main dependencies here
+
+[tool.poetry.dev-dependencies]
+# Add your development dependencies here
+
+[tool.poetry.packages]
+packages = [{include = "LawXpert2.0", from = "."}]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[project]
+name = "LawXpert2.0"
+requires-python = ">=3.12"
