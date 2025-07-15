@@ -24,9 +24,6 @@ app.secret_key = app_secret_key
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=30)
 logging.basicConfig(filename='error.log', level=logging.ERROR, format='%(asctime)s %(levelname)s: %(message)s')
 
-# --- ML Model Setup (Data Science part) ---
-
-# Load or create dataset
 try:
     # Check if model already exists
     category_model = pickle.load(open('category_model.pkl', 'rb'))
