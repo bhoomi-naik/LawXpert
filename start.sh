@@ -1,2 +1,4 @@
 #!/bin/bash
-gunicorn app:app
+echo "Starting LawXpert Flask App..."
+export PORT=${PORT:-5000}
+python app.py
