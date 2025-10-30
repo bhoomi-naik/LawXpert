@@ -12,9 +12,6 @@ Personalized Legal Assistance: A chatbot-driven interface offering initial legal
 
 Technology Stack:
 Backend: Flask, MySQL
-
 Frontend: React Native (for mobile app), HTML/CSS/JS (for web portal)
-
 Database: MySQL (for storing legal data and user info)
-
 Security: End-to-End Encryption for secure communication and data storage
