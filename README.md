@@ -19,3 +19,4 @@ Backend: Flask, MySQL
 Frontend: React Native (for mobile app), HTML/CSS/JS (for web portal)
 Database: MySQL (for storing legal data and user info)
 Security: End-to-End Encryption for secure communication and data storage
+581929db3fe5146f60d72dd072c331abb2bbb54d
